@@ -2,8 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var config = require('./.config.js');
-var profileCtrl = require('./controllers/profileCtrl.js');
-var userCtrl = require('./controllers/userCtrl.js');
+var profileCtrl = require('./controllers/profile_ctrl.js');
+var userCtrl = require('./controllers/user_ctrl.js');
 var session = require('express-session')
 
 
@@ -19,8 +19,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors(corsOptions));
 app.use(session({
     secret: config.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true
+    // resave: false,
+    // saveUninitialized: true
 }))
 
 
@@ -29,6 +29,6 @@ app.get('/api/profiles', profileCtrl.friends);
 
 
 
-app.listen(function(){
+app.listen(port, function(){
     console.log('listening on port ' + port);
-})
+}) 

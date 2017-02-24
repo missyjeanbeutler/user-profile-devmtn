@@ -1,11 +1,12 @@
 module.exports = {
     friends: function(req, res, next){
-        var friendsArr = [];
-        for(var i = 0; i < req.session.currentUser.friends; i++){
-            friendsArr = req.session.currentUser.friends.filter(function(e){
-                return e.name === req.session.currentUser.friends[i];
-            })
-        } res.send({ currentUser: req.session.currentUser, friends: friendsArr});
+        var friendsArr = []; 
+        for(var i =0; i < profiles.length; i++){
+          if(req.session.currentUser.friends.indexOf(profiles[i].name) !== -1) {
+            friendsArr.push(profiles[i])
+          }
+        }
+        return res.send({ currentUser: req.session.currentUser, friends: friendsArr});
     }
 }
 
